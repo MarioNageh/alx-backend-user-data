@@ -5,6 +5,7 @@ import uuid
 from typing import TypeVar
 
 from api.v1.auth.auth import Auth
+from models.user import User
 
 
 class SessionAuth(Auth):
@@ -30,5 +31,5 @@ class SessionAuth(Auth):
     def current_user(self, request=None) -> TypeVar('User'):
         session_id = self.session_cookie(request)
         user_id = self.user_id_for_session_id(session_id)
-        from models.user import User
+
         return User.get(user_id)
