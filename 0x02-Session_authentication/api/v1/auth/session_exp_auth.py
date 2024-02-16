@@ -2,12 +2,8 @@
 """ Module of auth
 """
 import os
-import uuid
 from datetime import datetime
-from typing import TypeVar
-
 from api.v1.auth.session_auth import SessionAuth
-from models.user import User
 
 
 class SessionExpAuth(SessionAuth):
