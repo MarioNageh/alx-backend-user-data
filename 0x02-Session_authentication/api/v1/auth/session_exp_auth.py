@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" Module of auth
+"""
+Module of auth
+SessionExpAuth class.
 """
 import os
 from datetime import datetime, timedelta
@@ -7,14 +9,19 @@ from api.v1.auth.session_auth import SessionAuth
 
 
 class SessionExpAuth(SessionAuth):
-    """Auth class."""
-
+    """
+    SessionExpAuth class.
+    """
     def __init__(self):
         """Constructor"""
         self.session_duration = int(os.getenv('SESSION_DURATION', 0))
 
     def create_session(self, user_id: str = None) -> str:
-        """Create a session."""
+        """
+        Create a session.
+        :param user_id:
+        :return:
+        """
         session_id = super().create_session(user_id)
         if session_id is None:
             return None
@@ -23,7 +30,11 @@ class SessionExpAuth(SessionAuth):
         return session_id
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
-        """Return the User ID by requesting it."""
+        """
+        Return the User ID by requesting it.
+        :param session_id:
+        :return:
+        """
         if session_id is None or not isinstance(session_id, str):
             return None
         session_dictionary = self.user_id_by_session_id.get(session_id)
