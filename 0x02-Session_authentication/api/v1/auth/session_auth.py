@@ -49,7 +49,11 @@ class SessionAuth(Auth):
         return User.get(user_id)
 
     def destroy_session(self, request=None):
-        """Destroy a session."""
+        """
+        Destroy a session.
+        :param request:
+        :return:
+        """
         if request is None:
             return False
         session_id = self.session_cookie(request)
