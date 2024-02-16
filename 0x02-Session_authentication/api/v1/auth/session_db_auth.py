@@ -44,7 +44,7 @@ class SessionDBAuth(SessionExpAuth):
             if len(user_id) == 0:
                 return None
             if user_id:
-                return user_id[0].user_id
+                return super().user_id_for_session_id(session_id)
         except Exception:
             pass
         return None
