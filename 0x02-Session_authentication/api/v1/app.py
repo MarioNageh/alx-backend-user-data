@@ -28,6 +28,7 @@ if os.getenv('AUTH_TYPE') == 'session_auth':
 
 if os.getenv('AUTH_TYPE') == 'session_exp_auth':
     from api.v1.auth.session_exp_auth import SessionExpAuth
+
     auth = SessionExpAuth()
 
 
@@ -73,7 +74,6 @@ def forbidden(error) -> str:
 
 
 if __name__ == "__main__":
-    print("aaa")
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
     app.run(host=host, port=port)
