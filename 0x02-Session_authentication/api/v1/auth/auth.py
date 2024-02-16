@@ -3,7 +3,7 @@
 """
 import os
 
-from typing import List, TypeVar
+from typing import List
 from typing import TypeVar
 
 
