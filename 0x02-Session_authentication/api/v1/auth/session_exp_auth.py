@@ -2,7 +2,7 @@
 """ Module of auth
 """
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from api.v1.auth.session_auth import SessionAuth
 
 
@@ -37,6 +37,7 @@ class SessionExpAuth(SessionAuth):
         created_at = session_dictionary.get('created_at')
         if created_at is None:
             return None
-        if (datetime.now() - created_at).seconds > self.session_duration:
+        allowed_window = created_at + timedelta(seconds=self.session_duration)
+        if allowed_window < datetime.now():
             return None
         return user_id
