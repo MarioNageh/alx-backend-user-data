@@ -14,14 +14,18 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 auth = None
 if os.getenv('AUTH_TYPE') == 'auth':
     from api.v1.auth.auth import Auth
+
     auth = Auth()
 if os.getenv('AUTH_TYPE') == 'basic_auth':
     from api.v1.auth.basic_auth import BasicAuth
+
     auth = BasicAuth()
 
 if os.getenv('AUTH_TYPE') == 'session_auth':
     from api.v1.auth.session_auth import SessionAuth
+
     auth = SessionAuth()
+
 
 @app.before_request
 def before_request():
@@ -39,6 +43,7 @@ def before_request():
             if not auth.current_user(request):
                 abort(403)
     request.current_user = auth.current_user(request)
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
