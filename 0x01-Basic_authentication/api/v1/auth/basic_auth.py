@@ -68,7 +68,6 @@ class BasicAuth(Auth):
             return None
         return None
 
-
     def current_user(self, request=None) -> TypeVar('User'):
         """ Method that require current user.
         """
